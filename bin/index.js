@@ -2,24 +2,18 @@
 const arg = require("arg");
 const chalk = require("chalk");
 const path = require("path")
+const getConfig = require('../src/config/config-mgr');
+const start = require('../src/commands/start.js');
 
 try {
-const args = arg({
+    const args = arg({
     '--start': Boolean,
     '--build': Boolean,
-});
+    });
 
     if (args["--start"]){
-        const pkgPath = pkgUp.sync({cwd: process.cwd()});
-        const pkg = require(pkgPath);
-        if (pkg.tool) {
-        console.log('Found configuration', pkg.tool);
-        // TODO: do something with configuration
-        } else {
-        console.log(chalk.yellow('Could not find configuration, using default'));
-        // TODO: get default configuration
-        }
-        console.log(chalk.bgCyanBright("Starting..."));
+        const config = getConfig()
+        start(config);
     } 
 
 }   catch (e) {
