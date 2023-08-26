@@ -1,7 +1,7 @@
-const logger = require('../logger');
+const logger = require('../logger')('commands:start');
 
 
 module.exports = function start_tool(config) {
-    logger.highlight(chalk.bgCyanBright('  Starting the app  '))
-    logger.debug(chalk.gray('Received configuration in start -'), config)
+    logger.highlight('  Starting the app  ')
+    logger.debug('Received configuration in start -', config)
 }

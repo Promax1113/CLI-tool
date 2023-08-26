@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const logger = require('../src/logger');
+const logger = require('../src/logger')('bin');
 const arg = require("arg");
 const chalk = require("chalk");
 const getConfig = require('../src/config/config-mgr');
@@ -18,7 +18,7 @@ try {
     } 
 
 }   catch (e) {
-    logger.debug(chalk.yellow(e.message + "\n"));
+    logger.debug(e.message + "\n");
     usage();
 }
 function usage(){

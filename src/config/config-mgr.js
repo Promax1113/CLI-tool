@@ -1,4 +1,3 @@
-const chalk = require('chalk');
 const logger = require('../logger')('config:mgr');
 const {cosmiconfigSync} = require('cosmiconfig');
 const configLoader = cosmiconfigSync('tool');
@@ -10,12 +9,12 @@ const ajv = new Ajv({ jsPropertySyntax: true });
 module.exports = function getConfig() {
     const result = configLoader.search(process.cwd());
     if (!result) {
-      logger.warning(chalk.yellow('Could not find configuration, using default'));
+      logger.warning('Could not find configuration, using default');
       return { port: 1234 };
     } else {
       const isValid = ajv.validate(schema, result.config);
       if (!isValid) {
-      logger.warning(chalk.yellow('Invalid configuration was supplied'));
+      logger.warning('Invalid configuration was supplied');
       console.log(betterAjvErrors(schema, result.config, ajv.errors));
       process.exit(1);
       }
