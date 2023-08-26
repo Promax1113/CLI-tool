@@ -1,4 +1,3 @@
-@ECHO OFF
 echo "Starting setup..."
 cd ..
 mkdir testProject

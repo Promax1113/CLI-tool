@@ -1,6 +1,7 @@
-const chalk = require('chalk');
+const logger = require('../logger');
+
 
 module.exports = function start_tool(config) {
-    console.log(chalk.bgCyanBright('  Starting the app  '))
-    console.log(chalk.gray('Received configuration in start -'), config)
+    logger.highlight(chalk.bgCyanBright('  Starting the app  '))
+    logger.debug(chalk.gray('Received configuration in start -'), config)
 }
