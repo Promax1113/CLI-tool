@@ -1,6 +1,6 @@
 @ECHO OFF
 echo "Starting setup..."
-cd ..
+cd ../..
 mkdir testProject
 cd testProject
 npm init -y
