@@ -4,7 +4,7 @@ const configLoader = cosmiconfigSync('tool');
 const betterAjvErrors = require('better-ajv-errors');
 const Ajv = require('ajv').default;
 const schema = require("./schema.json");
-const ajv = new Ajv({ jsPropertySyntax: true });
+const ajv = new Ajv();
 
 module.exports = function getConfig() {
     const result = configLoader.search(process.cwd());

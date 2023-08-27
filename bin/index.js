@@ -4,17 +4,19 @@ const arg = require("arg");
 const chalk = require("chalk");
 const getConfig = require('../src/config/config-mgr');
 const start = require('../src/commands/start.js');
+const todo = require('../src/commands/todo')
 
 try {
     const args = arg({
-    '--start': Boolean,
+    '--todo': Boolean,
     '--build': Boolean,
     });
     logger.debug("Received args: ", args);
 
-    if (args["--start"]){
-        const config = getConfig()
-        start(config);
+    if (args["--todo"]){
+        // const config = getConfig()
+        // start(config)
+        todo();
     } 
 
 }   catch (e) {
