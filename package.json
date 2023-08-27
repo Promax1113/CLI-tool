@@ -16,6 +16,9 @@
     "better-ajv-errors": "^1.2.0",
     "chalk": "^4",
     "cosmiconfig": "^8.2.0",
+    "csv": "^6.3.3",
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
     "debug": "^4.3.4"
   }
 }
