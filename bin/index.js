@@ -4,30 +4,38 @@ const arg = require("arg");
 const chalk = require("chalk");
 const getConfig = require('../src/config/config-mgr');
 const start = require('../src/commands/start.js');
-const todo = require('../src/commands/todo')
+const meta = require('../src/commands/meta')
 
-//try {
+try {
     const args = arg({
-    '--todo': Boolean,
+    '--meta': Boolean,
+    '--save': Boolean,
     '--build': Boolean,
     });
     logger.debug("Received args: ", args);
 
-    if (args["--todo"]){
+
+    if (args["--meta"]){
         // const config = getConfig()
         // start(config)
-        console.log("TODO")
-        todo.readTodoList()
-        console.log("Called")
+        if (args['--save']){
+            meta.getMeta(process.argv[3], '--save')
+        }
+        else{
+            meta.getMeta(process.argv[3], NaN)
+        }
+        
+        
     } 
 
-//}   catch (e) {
+}   catch (e) {
     logger.debug(e.message + "\n");
     usage();
-//}
+}
 function usage(){
     logger.warning(`${chalk.whiteBright('tool [CMD]')}
-    ${chalk.greenBright('--start')}\tStarts the app
+    ${chalk.greenBright('--meta {filepath}')}\tGets the metadata of file
+    ${chalk.greenBright('--save')}\tWill save the output of the command to a file
     ${chalk.greenBright('--build')}\tBuilds the app
     `);
 }
