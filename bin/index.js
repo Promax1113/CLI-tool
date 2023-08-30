@@ -16,13 +16,16 @@ try {
 
 
     if (args["--meta"]){
+        let argList = process.argv
+        let metaIndex = argList.indexOf('--meta')
+        
         // const config = getConfig()
         // start(config)
         if (args['--save']){
-            meta.getMeta(process.argv[3], '--save')
+            meta.getMeta(process.argv[metaIndex + 1], '--save')
         }
         else{
-            meta.getMeta(process.argv[3], NaN)
+            meta.getMeta(process.argv[metaIndex + 1], NaN)
         }
         
         
