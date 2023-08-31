@@ -1,5 +1,5 @@
 {
-  "name": "tool",
+  "name": "nutils",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -16,6 +16,13 @@
     "better-ajv-errors": "^1.2.0",
     "chalk": "^4",
     "cosmiconfig": "^8.2.0",
-    "debug": "^4.3.4"
+    "csv": "^6.3.3",
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "date": "^2.0.2",
+    "debug": "^4.3.4",
+    "exif": "^0.6.0",
+    "file-metadata": "^3.0.0",
+    "shelljs": "^0.8.5"
   }
 }
