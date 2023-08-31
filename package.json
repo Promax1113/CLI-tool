@@ -1,5 +1,5 @@
 {
-  "name": "tool",
+  "name": "nutils",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,6 +22,7 @@
     "date": "^2.0.2",
     "debug": "^4.3.4",
     "exif": "^0.6.0",
-    "file-metadata": "^3.0.0"
+    "file-metadata": "^3.0.0",
+    "shelljs": "^0.8.5"
   }
 }
