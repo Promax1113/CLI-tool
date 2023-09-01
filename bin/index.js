@@ -7,6 +7,7 @@ const start = require('../src/commands/start.js');
 const meta = require('../src/commands/meta')
 const dev = require('../src/utils/dev')
 const os = require('os')
+const gitConfig = require('../src/commands/git-config');
 
 try {
     const args = arg({
@@ -14,6 +15,7 @@ try {
     '--save': Boolean,
     '--help': Boolean,
     '--dev-setup': Boolean,
+    '--git-config': Boolean,
     });
     logger.debug("Received args: ", args);
 
@@ -39,6 +41,11 @@ try {
     else if (args['--dev-setup']){
         dev.devSetup(os.platform)
     }
+    else if (args['--git-config'] && !args['--meta' && !args['--help']]){
+        let configIndex = process.argv.indexOf('--git-config')
+        let result = gitConfig.gitConfigurer(process.argv[configIndex + 1], process.argv[configIndex + 2], true)
+        if (result == 200){logger.warning('Success!')} else {logger.warning('Error!')}
+    }
     else{
         throw(Error('\nInvalid command!\n'))
     }
@@ -48,10 +55,11 @@ try {
     usage();
 }
 function usage(){
-    logger.warning(`${chalk.whiteBright('tool [CMD]')}
+    logger.warning(`${chalk.whiteBright('sys-nutils [CMD]')}
     ${chalk.greenBright('--meta {filepath}')}\t Gets the metadata of file.
-    ${chalk.greenBright('[CMD] --save')}\t Will save the output of the command to a file, except for --help.
-    ${chalk.greenBright('--help')}\t Displays this message, must be the only one called.
+    ${chalk.greenBright('<CMD> --save')}\t Will save the output of the command to a file, except for --help.
+    ${chalk.greenBright('--help')}\t Displays this message, must be the only one called though.
+    ${chalk.greenBright('--git-config {parameter} {value} ')}\t Lets you change the git config.
     `);
 }
 
