@@ -17,14 +17,12 @@ function gitConfigurer(command, value, global){
             }
             
         }
-        return 200
     } catch (e){
         logger.warning('Error changing that config!')
         let gitStatus = shell.exec('git --version', { silent: true })
         if (!gitStatus['stdout'].includes('git version')){
             logger.warning("You don't have git installed!!")
         }
-        return 406
     }
     
     

@@ -7,4 +7,4 @@ cd ../CLI-tool
 npm install
 npm link
 cd ../testProject
-npm link tool
+npm link snutils

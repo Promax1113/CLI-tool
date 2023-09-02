@@ -1,58 +1,53 @@
 #!/usr/bin/env node
-const logger = require('../src/logger')('bin');
+const logger = require("../src/logger")("bin");
 const arg = require("arg");
 const chalk = require("chalk");
-const getConfig = require('../src/config/config-mgr');
-const start = require('../src/commands/start.js');
-const meta = require('../src/commands/meta')
-const dev = require('../src/utils/dev')
-const os = require('os')
-const gitConfig = require('../src/commands/git-config');
+const getConfig = require("../src/config/config-mgr");
+const start = require("../src/commands/start.js");
+const meta = require("../src/commands/meta");
+const dev = require("../src/utils/dev");
+const os = require("os");
+const gitConfig = require("../src/commands/git-config");
 
 try {
-    const args = arg({
-    '--meta': Boolean,
-    '--save': Boolean,
-    '--help': Boolean,
-    '--dev-setup': Boolean,
-    '--git-config': Boolean,
-    });
-    logger.debug("Received args: ", args);
+  const args = arg({
+    "--meta": Boolean,
+    "--save": Boolean,
+    "--help": Boolean,
+    "--dev-setup": Boolean,
+    "--gitcfg": Boolean,
+  });
+  logger.debug("Received args: ", args);
 
+  if (args["--meta"] && !args["--help"]) {
+    let metaIndex = process.argv.indexOf("--meta");
 
-    if (args["--meta"] && !args['--help']){
-
-        let metaIndex = process.argv.indexOf('--meta')
-        
-        // const config = getConfig()
-        // start(config)
-        if (args['--save']){
-            meta.getMeta(process.argv[metaIndex + 1], '--save')
-        }
-        else{
-            meta.getMeta(process.argv[metaIndex + 1], NaN)
-        }
-        
-        
-    } 
-    else if (args['--help'] && !args['--meta']){
-        usage()
+    // const config = getConfig()
+    // start(config)
+    if (args["--save"]) {
+      meta.getMeta(process.argv[metaIndex + 1], "--save");
+    } else {
+      meta.getMeta(process.argv[metaIndex + 1], NaN);
     }
-    else if (args['--dev-setup']){
-        dev.devSetup(os.platform)
-    }
-    else if (args['--git-config'] && !args['--meta' && !args['--help']]){
-        let configIndex = process.argv.indexOf('--git-config')
-        let result = gitConfig.gitConfigurer(process.argv[configIndex + 1], process.argv[configIndex + 2], true)
-        if (result == 200){logger.warning('Success!')} else {logger.warning('Error!')}
-    }
-    else{
-        throw(Error('\nInvalid command!\n'))
-    }
-
-}   catch (e) {
-    logger.warning(e.message)
+  } else if (args["--help"] && !args["--meta"]) {
     usage();
+  } else if (args["--dev-setup"]) {
+    dev.devSetup(os.platform);
+  } else if (args["--gitcfg"] && !args["--meta" && !args["--help"]]) {
+    let configIndex = process.argv.indexOf("--gitcfg");
+    gitConfig.gitConfigurer(
+      process.argv[configIndex + 1],
+      process.argv[configIndex + 2],
+      true
+    );
+  } else if (!args) {
+    usage();
+  } else {
+    throw Error("\nInvalid command!\n");
+  }
+} catch (e) {
+  logger.warning(e.message);
+  usage();
 }
 function usage(){
     logger.warning(`${chalk.whiteBright('sys-nutils [CMD]')}
@@ -63,4 +58,4 @@ function usage(){
     `);
 }
 
-module.exports = {usage}
+module.exports = { usage };

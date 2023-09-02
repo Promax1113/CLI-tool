@@ -1,16 +1,16 @@
 {
-  "name": "sys-nutils",
+  "name": "sysnutils",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "bin": {
-    "sys-nutils": "bin/index.js"
+    "sysnutils": "bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "promax1113",
   "license": "ISC",
   "dependencies": {
     "ajv": "^8.12.0",
