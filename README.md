@@ -22,6 +22,6 @@ I am planning on releasing it on npm.
 
 ## Feedback
 
-If you have any feedback, please reach out to us by opening an Issue here in this repo.
+If you have any feedback, please reach out to me by opening an Issue here in this repo.
 
 
