@@ -1,5 +1,5 @@
 
-# sys-nutils
+# sysnutils
 
 This is a basic CLI tool that is oriented to file and system management.
 
@@ -17,7 +17,7 @@ I am planning on releasing it on npm.
 
 - You only need to git clone ``https://github.com/Promax1113/CLI-tool.git``
 - After that cd your way into the setup-utils directory and run the corresponding script for your system.
-- run ``sys-nutils --help`` to see the avaliable commands.
+- run ``sysnutils --help`` to see the avaliable commands.
 
 
 ## Feedback
