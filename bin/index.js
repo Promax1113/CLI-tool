@@ -4,6 +4,7 @@ const arg = require("arg");
 const chalk = require("chalk");
 const getConfig = require("../src/config/config-mgr");
 const start = require("../src/commands/start.js");
+const gfn = require("../src/utils/gfn")
 const meta = require("../src/commands/meta");
 const dev = require("../src/utils/dev");
 const os = require("os");
@@ -16,6 +17,7 @@ try {
     "--help": Boolean,
     "--dev-setup": Boolean,
     "--gitcfg": Boolean,
+    "--gfneta": Boolean,
   });
   logger.debug("Received args: ", args);
 
@@ -40,21 +42,27 @@ try {
       process.argv[configIndex + 2],
       true
     );
+  
+  }else if (args['--gfneta']){
+    cmdIndex = process.argv.indexOf("--gfneta");
+    gfn(process.argv[cmdIndex + 1], process.argv[cmdIndex + 2], process.argv[cmdIndex + 3]);
   } else if (!args) {
     usage();
   } else {
     throw Error("\nInvalid command!\n");
   }
 } catch (e) {
-  logger.warning(e.message);
+  logger.warning(e);
   usage();
 }
+
 function usage(){
-    logger.warning(`${chalk.whiteBright('sys-nutils [CMD]')}
+    logger.warning(`${chalk.whiteBright('sysnutils [CMD]')}
     ${chalk.greenBright('--meta {filepath}')}\t Gets the metadata of file.
+    ${chalk.greenBright('--gfneta <currentPeople> <startingPeople> <timeElapsedInMinutes>')}\t Returns ETA and velocity of the Geforce Now queue.
     ${chalk.greenBright('<CMD> --save')}\t Will save the output of the command to a file, except for --help.
     ${chalk.greenBright('--help')}\t Displays this message, must be the only one called though.
-    ${chalk.greenBright('--git-config {parameter} {value} ')}\t Lets you change the git config.
+    ${chalk.greenBright('--gitcfg {parameter} {value} ')}\t Lets you change the git config.
     `);
 }
 

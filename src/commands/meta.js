@@ -1,9 +1,15 @@
 const fs = require("fs");
 const logger = require("../logger")("commands:meta");
 const save = require("../utils/save");
+const usage = require('../../bin/index')
 
 function getMeta(filename, args) {
   try {
+    if (filename == undefined){
+      throw Error(`Invalid filepath!
+      Usage: sysnutils --meta <filepath>
+      `)
+    }
     let meta = fs.statSync(filename);
     if (meta.isDirectory) {
       let metaSelection = {
@@ -35,8 +41,7 @@ function getMeta(filename, args) {
       saveMeta(formattedMeta, args, metaSelection._filename);
     }
   } catch (e) {
-    console.log(e);
-    console.log("File not found!");
+    logger.warning("Error: ", e.message);
   }
 }
 function saveMeta(meta, args, __filename) {
